@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>SSH Honeypot</h1>
+    <p class="lead">Why? Because I never have ssh listen on port 22 and I was curious to how many attempts there were to brute force access through ssh</p>
+    <p>So far I have found:</p>
+    <ul>
+        <li>{{ ucount  }} usernames</li>
+        <li>{{ pcount  }} passwords</li>
+        <li>{{ icount  }} ip addresses</li>
+    </ul>
+</div>
+
+<h2>Most Common..</h2>
+
+<div class="row" >
+    <div class="col-md-4">
+        <h2>Usernames</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Username</th>
+                <th>Count</th>
+            </tr>
+            {% for (username,count) in usernames %}
+                <tr>
+                    <td>{{ username }}</td>
+                    <td style="border-left: 1px solid #ccc;">{{ count }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Passwords</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Password</th>
+                <th>Count</th>
+            </tr>
+            {% for (password,count) in passwords %}
+            <tr>
+                <td>{{ password }}</td>
+                <td style="border-left: 1px solid #ccc;">{{ count }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    <div class="col-md-2">
+        <h2>IPs</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Ip Address</th>
+                <th>Count</th>
+            </tr>
+            {% for (ip,count) in ips %}
+            <tr>
+                <td>{{ ip }}</td>
+                <td style="border-left: 1px solid #ccc;">{{ count }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
